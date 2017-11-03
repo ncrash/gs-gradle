@@ -30,13 +30,12 @@ dependencies {
 
 // tag::jacoco[]
 jacoco {
-    toolVersion = "0.7.9"
-    applyTo junitPlatformTest
+    toolVersion = '0.7.9'
 }
 
-junitPlatformTest {
-    jacoco {
-        destinationFile = file("build/jacoco/jacocoTest.exec")
+jacocoTestReport {
+    reports {
+        xml.enabled true
     }
 }
 // end::jacoco[]
