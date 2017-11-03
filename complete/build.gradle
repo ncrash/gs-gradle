@@ -1,7 +1,8 @@
 apply plugin: 'java'
 apply plugin: 'eclipse'
 apply plugin: 'application'
-
+apply plugin: 'jacoco'
+    
 mainClassName = 'hello.HelloWorld'
 
 // tag::repositories[]
@@ -26,6 +27,19 @@ dependencies {
     testCompile "junit:junit:4.12"
 }
 // end::dependencies[]
+
+// tag::jacoco[]
+jacoco {
+    toolVersion = "0.7.9"
+    applyTo junitPlatformTest
+}
+
+junitPlatformTest {
+    jacoco {
+        destinationFile = file("build/jacoco/jacocoTest.exec")
+    }
+}
+// end::jacoco[]
 
 // tag::wrapper[]
 // end::wrapper[]
