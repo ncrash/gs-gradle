@@ -63,11 +63,11 @@ task findbugs(dependsOn: [findbugsMain, findbugsTest])
 
 // tag::pmd[]
 pmd {
-	toolVersion = "5.8.1"
+    toolVersion = "5.8.1"
     ignoreFailures = true
     sourceSets = [sourceSets.main]
-	targetJdk = 1.7
-	//TODO 룰셋에 대해서는 findbug와 마찬가지로 별도의 파일로 관리가 되어야 함
+    targetJdk = 1.7
+    //TODO 룰셋에 대해서는 findbug와 마찬가지로 별도의 파일로 관리가 되어야 함
     ruleSets = [
             'java-basic',
             'java-braces',
