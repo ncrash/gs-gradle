@@ -46,7 +46,6 @@ findbugs {
     ignoreFailures = true
     toolVersion = "3.0.1"
     sourceSets = [sourceSets.main]
-    reportsDir = file("${REPORTS_PATH}/findbug/")
     effort = "max"
 }
 
