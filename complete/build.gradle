@@ -3,6 +3,7 @@ apply plugin: 'eclipse'
 apply plugin: 'application'
 apply plugin: 'jacoco'
 apply plugin: "findbugs"
+apply plugin: 'pmd'
     
 mainClassName = 'hello.HelloWorld'
 
@@ -43,8 +44,8 @@ jacocoTestReport {
 
 // tag::findbugs[]
 findbugs {
-    ignoreFailures = true
     toolVersion = "3.0.1"
+    ignoreFailures = true
     sourceSets = [sourceSets.main]
     effort = "default"
     excludeFilter = file("$rootProject.rootDir/config/findbugs/exclude.xml")
@@ -59,6 +60,45 @@ tasks.withType(FindBugs) {
 
 task findbugs(dependsOn: [findbugsMain, findbugsTest])
 // end::findbugs[]
+
+// tag::pmd[]
+pmd {
+	toolVersion = "5.8.1"
+    ignoreFailures = true
+    sourceSets = [sourceSets.main]
+	targetJdk = 1.7
+	//TODO 룰셋에 대해서는 findbug와 마찬가지로 별도의 파일로 관리가 되어야 함
+    ruleSets = [
+            'java-basic',
+            'java-braces',
+            'java-clone',
+            'java-codesize',
+            'java-comments',
+            'java-controversial',
+            'java-coupling',
+            'java-design',
+            'java-empty',
+            'java-finalizers',
+            'java-imports',
+            'java-optimizations',
+            'java-strictexception',
+            'java-strings',
+            'java-typeresolution',
+            'java-unnecessary',
+            'java-sunsecure',
+            'java-unusedcode'
+    ]
+}
+
+tasks.withType(Pmd) {
+    reports {
+        xml.enabled = true
+        html.enabled = true
+    }
+}
+
+task pmd(dependsOn: [pmdMain, pmdTest])
+// end::pmd[]
 
 // tag::wrapper[]
 // end::wrapper[]
