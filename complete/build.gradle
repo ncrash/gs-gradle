@@ -44,11 +44,20 @@ jacocoTestReport {
 // tag::findbugs[]
 findbugs {
     ignoreFailures = true
-    toolVersion = "3.0.1"
+	toolVersion = "3.0.1"
     sourceSets = [sourceSets.main]
-    effort = "max"
+    effort = "default"
+    excludeFilter = file("$rootProject.rootDir/config/findbugs/exclude.xml")
 }
 
+tasks.withType(FindBugs) {
+    reports {
+        xml.enabled true
+        html.enabled false
+    }
+}
+
+// UPDATE: renamed the task to customFindbugs and made it automatically be called when build is called
 task findbugs(dependsOn: [findbugsMain, findbugsTest])
 // end::findbugs[]
 
