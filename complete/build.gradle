@@ -2,6 +2,7 @@ apply plugin: 'java'
 apply plugin: 'eclipse'
 apply plugin: 'application'
 apply plugin: 'jacoco'
+apply plugin: "findbugs"
     
 mainClassName = 'hello.HelloWorld'
 
@@ -39,6 +40,18 @@ jacocoTestReport {
     }
 }
 // end::jacoco[]
+
+// tag::findbugs[]
+findbugs {
+    ignoreFailures = true
+    toolVersion = "3.0.1"
+    sourceSets = [sourceSets.main]
+    reportsDir = file("${REPORTS_PATH}/findbug/")
+    effort = "max"
+}
+
+task findbugs(dependsOn: [findbugsMain, findbugsTest])
+// end::findbugs[]
 
 // tag::wrapper[]
 // end::wrapper[]
