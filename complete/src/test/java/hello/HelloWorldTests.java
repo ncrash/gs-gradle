@@ -22,9 +22,7 @@ public class HelloWorldTests {
 
     @Test
     public void shouldPrintTimeToConsole() {
-		HelloWorld helloWorld = new HelloWorld();
-		
-        helloWorld.main(new String[] { });
+        HelloWorld.main(new String[] { });
 
         assertThat(output(), containsString("The current local time is"));
     }
